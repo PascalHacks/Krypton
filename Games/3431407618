@@ -1,0 +1,349 @@
+ repeat wait() until game.IsLoaded
+
+ local mt = getrawmetatable(game)
+setreadonly(mt,false)
+local old = mt.__namecall
+
+
+mt.__namecall = newcclosure(function(self,...)
+    local meth = getnamecallmethod()
+    local args = {...}
+    if meth == "InvokeServer" or meth == "FireServer" then
+        if self.Name:lower():find("kick") then
+            return nil
+        end
+    elseif meth:lower() == "Kick" then
+        return nil
+    end
+    return old(self,...)
+end)
+
+
+local mt = getrawmetatable(game)
+local old = mt.__namecall
+local protect = newcclosure or protect_function
+
+if not protect then
+protect = function(f) return f end
+end
+
+setreadonly(mt, false)
+mt.__namecall = protect(function(self, ...)
+local method = getnamecallmethod()
+if method == "Kick" then
+wait(9e9)
+return
+end
+return old(self, ...)
+end)
+hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
+
+
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/PascalHacks/Krypton/main/UI/Krypton.UI.lua"))()
+local ISLE = library.new("Krypton", 5013109572)
+game.Players.LocalPlayer.PlayerGui:FindFirstChild("Krypton").ResetOnSpawn = false
+
+-- themes
+local themes = {
+	Background = Color3.fromRGB(24, 24, 24),
+	Glow = Color3.fromRGB(0, 0, 0),
+	Accent = Color3.fromRGB(10, 10, 10),
+	LightContrast = Color3.fromRGB(20, 20, 20),
+	DarkContrast = Color3.fromRGB(14, 14, 14),  
+	TextColor = Color3.fromRGB(255, 255, 255)
+}
+
+-- first page
+local TakeMyScript = ISLE:addPage("Isle Main", 5012544693)
+local RussianAvocado = TakeMyScript:addSection("Main")
+
+
+
+RussianAvocado:addButton("Teleport to truth",
+function()
+local PlaceId = 4529195149
+
+game:GetService("TeleportService"):Teleport(PlaceId, game:GetService("Players").LocalPlayer)
+
+end
+	)
+
+RussianAvocado:addButton("Update Player esp",
+function()
+if game.Players.LocalPlayer.Character:FindFirstChild("EVG")   then    
+game.Players.LocalPlayer.Character.EVG:Destroy()
+local Accessory = Instance.new("Accessory")
+Accessory.Name = "EVG"
+Accessory.Parent = game.Players.LocalPlayer.Character
+end
+end
+)
+RussianAvocado:addButton("Item Esp",
+function()
+if game.Players.LocalPlayer.Character:FindFirstChild("WisdomArtifact") == nil  then    
+local BoolValue = Instance.new("BoolValue")
+BoolValue.Value = true
+BoolValue.Name = "WisdomArtifact"
+BoolValue.Parent = game.Players.LocalPlayer.Character
+
+end
+
+
+end
+
+)
+
+
+RussianAvocado:addButton("Anti-tp Bypass",
+function()
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
+local ForceField = Instance.new("ForceField",game.Players.LocalPlayer.Character)
+
+
+end
+	)
+
+	RussianAvocado:addButton("Full Bright and Player esp",
+	function()
+	if game.Players.LocalPlayer.Character:FindFirstChild("EVG") == nil  then  
+local Accessory = Instance.new("Accessory")
+Accessory.Name = "EVG"
+Accessory.Parent = game.Players.LocalPlayer.Character
+
+
+end
+end
+)
+
+RussianAvocado:addButton("Random TP" ,
+function()
+  if game.Workspace.SpecialRegions.Anomaly2.Active.Value == true then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
+end
+end
+)
+
+RussianAvocado:addButton("Open docks door" ,
+function()
+ fireclickdetector(game.Workspace.Gate.Buttons.Open.ClickDetector)
+end
+)
+
+
+
+
+
+
+RussianAvocado:addButton("Mercenary log" ,
+function()
+game.Workspace.AIHunter.Location:GetPropertyChangedSignal("Value"):Connect(function()
+
+	_G.Message = Instance.new("Color3Value")
+	_G.Message.Value = Color3.fromRGB(255,255,0)
+	_G.Message.Name = "Mercs heading to: " ..tostring(game.Workspace.AIHunter.Location.Value)
+		_G.Message.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+end)
+
+game.Workspace.AIHunter.Leader:GetPropertyChangedSignal("Value"):Connect(function()
+
+
+	_G.Message = Instance.new("Color3Value")
+	_G.Message.Value = Color3.fromRGB(255,255,0)
+	_G.Message.Name = "Merc leader is: "  ..tostring(game.Workspace.AIHunter.Leader.Value)
+		_G.Message.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+end)
+game.Workspace.AIHunter.Radio.ChildAdded:Connect(function()
+	local Merc = game.Workspace.AIHunter.Radio:GetChildren()
+
+	for i,v in pairs(Merc) do 
+
+			_G.Message = Instance.new("Color3Value")
+			_G.Message.Value = Color3.fromRGB(255,255,0)
+			_G.Message.Name = "Mercenary:  " ..tostring(v.Name).. " said: " .. tostring(v.Value)
+			_G.Message.Parent = game.Players.LocalPlayer.Character["@Alerts"]	
+		end
+
+end)
+
+end
+)
+
+
+
+
+RussianAvocado:addButton("Open ancient gate" ,
+function()
+
+    while true do
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.TheGlassDoorPuzzle.GreenPlate.Base.CFrame
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.TheGlassDoorPuzzle.BluePlate.Base.CFrame
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.TheGlassDoorPuzzle.RedPlate.Base.CFrame
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.TheGlassDoorPuzzle.WhitePlate.Base.CFrame
+wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.TheGlassDoorPuzzle.YellowPlate.Base.CFrame
+break
+end
+end
+)
+
+
+RussianAvocado:addButton("No Night" ,
+function()
+for i,v in pairs(game.Players.LocalPlayer.PlayerScripts:GetDescendants()) do 
+if v:IsA("Animation")    then
+    v.AnimationId = "3"
+    end
+end
+
+game.Players.LocalPlayer.Character.Cutscene:GetPropertyChangedSignal("Value"):Connect(function()
+    if game.Players.LocalPlayer.Character.Cutscene.Value == true then
+        game.Players.LocalPlayer.Character.Cutscene.Value = false
+        end
+end)
+game.Players.LocalPlayer.Character.SleepMode:GetPropertyChangedSignal("Value"):Connect(function()
+    if game.Players.LocalPlayer.Character.SleepMode.Value == true then
+        game.Players.LocalPlayer.Character.SleepMode.Value = false
+        end
+end)
+game.Workspace.GameState.NightCutscene:GetPropertyChangedSignal("Value"):Connect(function()
+    if game.Workspace.GameState.NightCutscene.Value == true then
+        game.Workspace.GameState.NightCutscene.Value = false
+
+    end
+end)
+
+game.Workspace.GameState.Night:GetPropertyChangedSignal("Value"):Connect(function()
+    if game.Workspace.GameState.Night.Value == true then
+        game.Workspace.GameState.Night.Value = false
+
+        end
+    end)
+
+end
+)
+
+RussianAvocado:addButton("Remove all trees" ,
+function()
+    for i, Trees in pairs(game.Workspace.NoCollideTrees:GetDescendants()) do
+    if Trees:IsA("Model") then
+    Trees:Destroy()
+
+       end 
+    end
+end
+)
+
+RussianAvocado:addSlider("WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 100,function(value) 
+_G.Speed = value
+	 game.RunService.Heartbeat:Connect(function()
+
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.Speed
+end)
+end	
+
+)
+
+RussianAvocado:addSlider("JumpPower",game.Players.LocalPlayer.Character.Humanoid.JumpPower, 16, 500,function(value) 
+_G.JumpPower = value
+	 game.RunService.Heartbeat:Connect(function()
+
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.JumpPower
+end)
+end	
+
+)
+
+RussianAvocado:addSlider("MaxSlopeAngle (easier to climb)", game.Players.LocalPlayer.Character.Humanoid.MaxSlopeAngle, 0, 89.9, function(value)
+_G.MaxSlope = value 
+game.RunService.Heartbeat:Connect(function()
+	game.Players.LocalPlayer.Character.Humanoid.MaxSlopeAngle = value
+
+end)
+end
+
+)
+
+RussianAvocado:addTextbox("Orbital Strike","Player Name",function(OrbitalText,pressed)
+if game.Players:FindFirstChild(OrbitalText) and pressed  then
+    local Orbital31 = game.Players:FindFirstChild(OrbitalText)
+
+    local args = {
+    [1] = Orbital31.Name
+}
+
+workspace.Services:FindFirstChild("@Laser"):FireServer(unpack(args))
+end
+end
+)
+RussianAvocado:addButton("Disable orbital",
+function()
+
+      local args = {
+    [1] = game.Workspace.Threats["Junction Turret"].Humanoid
+}
+
+
+workspace.Services:FindFirstChild("@Laser"):FireServer(unpack(args))
+
+end
+
+)
+
+
+
+
+
+_G.Message = Instance.new("Color3Value")
+_G.Message.Value = Color3.fromRGB(255,255,0)
+_G.Message.Name = "Welcome to krypton Remember this is still in Beta enjoy :) discord.gg/ajBfhGKyaJ"
+_G.Message.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+
+
+
+
+local TakeMyScripttwewe31 = ISLE:addPage("Player tp", 5012544693)
+local RussianAvocado3314 = TakeMyScripttwewe31:addSection("Players")
+
+local Players = game.Players:GetChildren()
+for i,e in pairs(Players) do 
+RussianAvocado3314:addButton(e.Name,
+function()      
+	if e.Character then
+		 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = e.Character.HumanoidRootPart.CFrame
+	end
+end
+)
+end
+
+
+
+
+local TakeMyScripttwewe = ISLE:addPage("Item Tps", 5012544693)
+local RussianAvocado331 = TakeMyScripttwewe:addSection("Items")
+
+
+
+
+
+
+local Tools = game.Workspace.Tools:GetChildren()
+for i,v in pairs(Tools) do 
+RussianAvocado331:addButton(v.Name,
+function()      
+
+
+
+if v:IsA("Model")   then
+    	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+	end
+
+
+
+end
+)
+end
