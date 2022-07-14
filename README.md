@@ -10,3 +10,4 @@
 
 <h3>This script is ptotected By</h3>
 <sup>Pascal Softworks, LLC. Propriatary License</sup> <br />
+.
