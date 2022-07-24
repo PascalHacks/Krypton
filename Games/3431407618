@@ -1,4 +1,3 @@
-
  repeat wait() until game.IsLoaded
  
  local mt = getrawmetatable(game)
@@ -624,17 +623,3 @@ if v:IsA("Model")   then
 end
 )
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
