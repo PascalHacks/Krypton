@@ -228,7 +228,7 @@ do
 		--Properties:
 
 		container.Name = title
-		container.Parent = game.CoreGui
+		container.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 		container.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 		container.ResetOnSpawn = false
 
