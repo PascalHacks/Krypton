@@ -1,11 +1,16 @@
+ local mt = getrawmetatable(game)
+setreadonly(mt,false)
+local old = mt.__namecall
+
+
 mt.__namecall = newcclosure(function(self,...)
-    local yes = getnamecallmethod()
+    local meth = getnamecallmethod()
     local args = {...}
-    if yes == "InvokeServer" or yes == "FireServer" then
+    if meth == "InvokeServer" or meth == "FireServer" then
         if self.Name:lower():find("kick") then
             return nil
         end
-    elseif yes:lower() == "Kick" then
+    elseif meth:lower() == "Kick" then
         return nil
     end
     return old(self,...)
