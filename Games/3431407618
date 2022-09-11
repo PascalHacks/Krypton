@@ -1,20 +1,3 @@
- local mt = getrawmetatable(game)
-setreadonly(mt,false)
-local old = mt.__namecall
-
-
-mt.__namecall = newcclosure(function(self,...)
-    local meth = getnamecallmethod()
-    local args = {...}
-    if meth == "InvokeServer" or meth == "FireServer" then
-        if self.Name:lower():find("kick") then
-            return nil
-        end
-    elseif meth:lower() == "Kick" then
-        return nil
-    end
-    return old(self,...)
-end)
 
 
 local mt = getrawmetatable(game)
@@ -28,6 +11,14 @@ end
 setreadonly(mt, false)
 mt.__namecall = protect(function(self, ...)
 local method = getnamecallmethod()
+ if method == "InvokeServer" or method == "FireServer" then
+        if self.Name:lower():find("kick") then
+            return nil
+        end
+    elseif method:lower() == "Kick" then
+        return nil
+    end
+
 if method == "Kick" then
 wait(9e9)
 return
