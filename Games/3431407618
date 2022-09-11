@@ -1,15 +1,16 @@
-mt.__namecall = newcclosure(function(self,...)
-    local yes = getnamecallmethod()
-    local args = {...}
-    if yes == "InvokeServer" or yes == "FireServer" then
-        if self.Name:lower():find("kick") then
-            return nil
-        end
-    elseif yes:lower() == "Kick" then
-        return nil
-    end
-    return old(self,...)
+local mt = getrawmetatable(game);
+local old = mt.__namecall
+setreadonly(mt,false)
+mt.__namecall = newcclosure(function(remote,...)
+   args = {...}
+   method = tostring(getnamecallmethod())
+   if method == "InvokeServer" and tostring(remote) == "Kick" then
+       args[1] = nil
+       return old(remote,unpack(args))
+   end
+   return old(remote,...)
 end)
+setreadonly(mt,true)
 
 
 
