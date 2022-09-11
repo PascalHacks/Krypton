@@ -2,7 +2,7 @@ local Hook;
 Hook = hookfunction(getrawmetatable(game).__namecall, newcclosure(function(self, ...) 
   local args = {...} 
   if getnamecallmethod() == "InvokeServer" and self.Name == "Kick"   then
-       args[1] = nil 
+       args = nil
   end
   return Hook(self, ...)
 end))
