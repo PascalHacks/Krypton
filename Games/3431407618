@@ -24,11 +24,11 @@ end
 return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
-
+game.Lighting.ChildAdded:Connect(function()
 if game.Lighting:FindFirstChild("ColorCorrection") then
 game.Lighting.ColorCorrection:Destroy()
 end
-
+end)
 
 -- This file was generated using Luraph Obfuscator v13.6.6
 
