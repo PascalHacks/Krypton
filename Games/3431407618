@@ -26,9 +26,7 @@ end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
 
 
-if game.Lighting:FindFirstChild("ColorCorrection") then
-game.Lighting.ColorCorrection:Destroy()
-end
+
 
 
 
