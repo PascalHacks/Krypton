@@ -24,10 +24,7 @@ end
 return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
-game.Lighting.ChildAdded:Connect(function(added)
-   added:Destroy()
 
-end)
 
 if game.Lighting:FindFirstChild("ColorCorrection") then
 game.Lighting.ColorCorrection:Destroy()
