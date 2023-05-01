@@ -1,5 +1,5 @@
 
-[![Status](https://img.shields.io/badge/Status-Alpha-blue?style=for-the-badge)](https://)
+[![Status](https://img.shields.io/badge/Status-V1.7-blue?style=for-the-badge)](https://)
 
 # Krypton <img width="50" height="50" src="https://i.ibb.co/qpqmDm9/Krypton-round.png" alt="Krypton Logo"> <br />
 
